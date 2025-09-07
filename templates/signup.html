@@ -20,7 +20,7 @@
       <label class="block text-gray-700 mb-2">🔒 Password</label>
       <input type="password" id="password" name="password" required minlength="8"
              placeholder="Create strong password"
-             class="w-full p-3 rounded-lg border mb-2" 
+             class="w-full p-3 rounded-lg border mb-2"
              oninput="checkStrength()" />
 
       <!-- Strength Bar -->
@@ -48,7 +48,6 @@
       const strengthText = document.getElementById("strengthText");
 
       let strength = 0;
-
       if (password.length >= 8) strength++;
       if (/[A-Z]/.test(password)) strength++;
       if (/[0-9]/.test(password)) strength++;

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🔑 Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: radial-gradient(circle at center, #1e293b, #0f172a);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .glow {
+      box-shadow: 0 0 20px rgba(0, 191, 255, 0.8),
+                  0 0 40px rgba(0, 191, 255, 0.6),
+                  0 0 60px rgba(0, 191, 255, 0.4);
+      animation: pulse 2s infinite alternate;
+    }
+    @keyframes pulse {
+      from { box-shadow: 0 0 20px #00bfff, 0 0 40px #00bfff; }
+      to { box-shadow: 0 0 40px #ff00ff, 0 0 80px #00ffff; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-gray-900 p-8 rounded-2xl glow w-96">
+    <h1 class="text-3xl font-extrabold text-center text-cyan-400 mb-6">🔑 Login</h1>
+    
+    <!-- ✅ Flask form submission (not JS redirect) -->
+    <form action="/login" method="post">
+      <!-- Phone -->
+      <label class="block text-gray-300 mb-2">📱 Phone Number</label>
+      <input type="tel" name="phone" required 
+             placeholder="Enter phone number"
+             class="w-full p-3 rounded-lg mb-4 text-black" />
+
+      <!-- Password -->
+      <label class="block text-gray-300 mb-2">🔒 Password</label>
+      <input type="password" id="password" name="password" required minlength="8"
+             placeholder="Enter password"
+             class="w-full p-3 rounded-lg mb-2 text-black" />
+
+      <!-- Strength Indicator -->
+      <p id="strengthMsg" class="text-sm font-semibold mb-6"></p>
+
+      <!-- Button -->
+      <button type="submit" 
+              class="w-full py-3 rounded-lg bg-gradient-to-r from-cyan-400 to-blue-600 hover:scale-105 transition transform text-white font-bold">
+        🚀 Login
+      </button>
+    </form>
+
+    <p class="text-center mt-4 text-sm text-gray-300">
+      New user? <a href="/signup" class="text-purple-400 font-semibold hover:underline">Sign Up</a>
+    </p>
+  </div>
+
+  <script>
+    const passwordInput = document.getElementById("password");
+    const strengthMsg = document.getElementById("strengthMsg");
+
+    passwordInput.addEventListener("input", () => {
+      const val = passwordInput.value;
+      let strength = "";
+      let color = "";
+
+      if (val.length < 6) {
+        strength = "Weak ❌";
+        color = "text-red-500";
+      } else if (val.match(/[A-Z]/) && val.match(/[0-9]/) && val.match(/[^A-Za-z0-9]/)) {
+        strength = "Strong ✅";
+        color = "text-green-400";
+      } else {
+        strength = "Medium ⚠️";
+        color = "text-yellow-400";
+      }
+
+      strengthMsg.textContent = strength;
+      strengthMsg.className = "text-sm font-semibold mb-6 " + color;
+    });
+  </script>
+</body>
+</html>

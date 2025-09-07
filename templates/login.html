@@ -39,12 +39,9 @@
 
       <!-- Password -->
       <label class="block text-gray-300 mb-2">🔒 Password</label>
-      <input type="password" id="password" name="password" required minlength="8"
+      <input type="password" name="password" required minlength="8"
              placeholder="Enter password"
-             class="w-full p-3 rounded-lg mb-2 text-black" />
-
-      <!-- Strength Indicator -->
-      <p id="strengthMsg" class="text-sm font-semibold mb-6"></p>
+             class="w-full p-3 rounded-lg mb-6 text-black" />
 
       <!-- Button -->
       <button type="submit" 
@@ -57,30 +54,5 @@
       New user? <a href="/signup" class="text-purple-400 font-semibold hover:underline">Sign Up</a>
     </p>
   </div>
-
-  <script>
-    const passwordInput = document.getElementById("password");
-    const strengthMsg = document.getElementById("strengthMsg");
-
-    passwordInput.addEventListener("input", () => {
-      const val = passwordInput.value;
-      let strength = "";
-      let color = "";
-
-      if (val.length < 6) {
-        strength = "Weak ❌";
-        color = "text-red-500";
-      } else if (val.match(/[A-Z]/) && val.match(/[0-9]/) && val.match(/[^A-Za-z0-9]/)) {
-        strength = "Strong ✅";
-        color = "text-green-400";
-      } else {
-        strength = "Medium ⚠️";
-        color = "text-yellow-400";
-      }
-
-      strengthMsg.textContent = strength;
-      strengthMsg.className = "text-sm font-semibold mb-6 " + color;
-    });
-  </script>
 </body>
-</html>
+</html> 

@@ -5,11 +5,25 @@
   <title>⚠ Error</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="flex items-center justify-center min-h-screen bg-gradient-to-r from-red-500 to-yellow-500">
+<body class="flex items-center justify-center min-h-screen bg-gradient-to-r from-red-500 via-pink-500 to-purple-600">
   <div class="bg-white p-8 rounded-2xl shadow-xl w-96 text-center">
-    <h1 class="text-2xl font-bold text-red-600 mb-4">⚠ Error</h1>
-    <p class="text-gray-800 mb-6">{{ message }}</p>
-    <a href="/" class="py-2 px-4 bg-red-500 text-white rounded-lg hover:bg-red-600">🔙 Back to Login</a>
+    <h1 class="text-3xl font-bold text-red-600 mb-4">⚠ Error</h1>
+    
+    <!-- Dynamic Error Message -->
+    <p class="text-gray-700 text-lg mb-6">{{ message }}</p>
+
+    <!-- Conditional Buttons -->
+    {% if "not registered" in message %}
+      <a href="/signup" 
+         class="block w-full py-3 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-lg hover:scale-105 transition mb-3">
+        📝 Sign Up
+      </a>
+    {% else %}
+      <a href="/" 
+         class="block w-full py-3 bg-gradient-to-r from-purple-400 to-pink-500 text-white font-bold rounded-lg hover:scale-105 transition">
+        🔑 Back to Login
+      </a>
+    {% endif %}
   </div>
 </body>
 </html>

@@ -57,11 +57,16 @@ def login():
     password = request.form.get("password")
 
     user = users.find_one({"phone": phone})
-    if user and user.get("password") == hash_password(password):
+
+    if not user:
+        # phone not found
+        return render_template("error.html", message="⚠ Phone not registered. Please sign up first.")
+
+    if user.get("password") == hash_password(password):
         # ✅ Redirect to Quote Generator App
         return redirect("https://quote-generator-blond-seven.vercel.app/")
     else:
-        return render_template("error.html", message="❌ Invalid phone or password!")
+        return render_template("error.html", message="❌ Invalid password!")
 
 if __name__ == "__main__":
     app.run(debug=True)
